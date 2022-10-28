@@ -35,3 +35,30 @@ class ProductSerializer(ModelSerializer):
 
     def get_imageUrl(self, instance):
         return settings.HOST_URL+instance.image.url
+
+
+class ProductDetailSerializer(ModelSerializer):
+    imageUrl = SerializerMethodField()
+    factory = SerializerMethodField()
+
+    class Meta:
+        model = Product
+        fields = ('id', 'name', 'quantity', 'description',
+                  'imageUrl', 'image', 'factory')
+        extra_kwargs = {
+            'image': {
+                'write_only': True
+            },
+            'factory': {
+                'write_only': True
+            },
+            'imageUrl': {
+                'read_only': True
+            }
+        }
+
+    def get_imageUrl(self, instance):
+        return settings.HOST_URL+instance.image.url
+
+    def get_factory(self, instance):
+        return FactorySerializer(instance.factory).data

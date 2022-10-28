@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from .models import Factory, Product
 
 # Serializers
-from .serializers import FactorySerializer, ProductSerializer
+from .serializers import FactorySerializer, ProductDetailSerializer, ProductSerializer
 
 # Create your views here.
 
@@ -29,6 +29,10 @@ class ProductViewSet(ModelViewSet):
         factory = get_object_or_404(Factory, pk=factory_id)
         product_by_factory = Product.objects.filter(factory=factory)
         return Response(ProductSerializer(product_by_factory, many=True).data)
+
+    def retrieve(self, request, factory_id, pk, *args, **kwargs):
+        product = get_object_or_404(Product, pk=pk)
+        return Response(ProductDetailSerializer(product).data)
 
     def create(self, request, factory_id, * args, **kwargs):
         request.data['factory'] = factory_id
