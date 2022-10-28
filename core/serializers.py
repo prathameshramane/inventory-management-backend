@@ -19,7 +19,19 @@ class ProductSerializer(ModelSerializer):
 
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ('id', 'factory', 'name', 'quantity',
+                  'description', 'imageUrl', 'image')
+        extra_kwargs = {
+            'image': {
+                'write_only': True
+            },
+            'factory': {
+                'write_only': True
+            },
+            'imageUrl': {
+                'read_only': True
+            }
+        }
 
     def get_imageUrl(self, instance):
-        return settings.HOST_URL+instance.imageUrl.url
+        return settings.HOST_URL+instance.image.url

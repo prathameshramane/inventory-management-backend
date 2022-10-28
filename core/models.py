@@ -23,7 +23,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     quantity = models.IntegerField(validators=[MinValueValidator(0)])
     description = models.TextField()
-    imageUrl = models.ImageField(upload_to=product_image_directory_path)
+    image = models.ImageField(upload_to=product_image_directory_path)
 
     # Relations
     factory = models.ForeignKey(to=Factory, on_delete=models.CASCADE)
