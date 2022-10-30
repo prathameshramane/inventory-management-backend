@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -12,6 +13,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Azure
+    'storages',
 
     # CORS
     'corsheaders',
@@ -91,8 +95,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 # Default primary key field type
@@ -110,3 +112,16 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ],
 }
+
+
+# Azure Blob Storage
+
+DEFAULT_FILE_STORAGE = 'backend.azure_storage.AzureMediaStorage'
+
+AZURE_STORAGE_KEY = config('AZURE_STORAGE_KEY')
+AZURE_ACCOUNT_NAME = config('AZURE_ACCOUNT_NAME')
+AZURE_MEDIA_CONTAINER = config('AZURE_MEDIA_CONTAINER')
+
+# Files URL
+AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_MEDIA_CONTAINER}/'

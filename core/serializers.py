@@ -34,7 +34,7 @@ class ProductSerializer(ModelSerializer):
         }
 
     def get_imageUrl(self, instance):
-        return settings.HOST_URL+instance.image.url
+        return instance.image.url
 
 
 class ProductDetailSerializer(ModelSerializer):
@@ -58,7 +58,7 @@ class ProductDetailSerializer(ModelSerializer):
         }
 
     def get_imageUrl(self, instance):
-        return settings.HOST_URL+instance.image.url
+        return instance.image.url
 
     def get_factory(self, instance):
         return FactorySerializer(instance.factory).data
