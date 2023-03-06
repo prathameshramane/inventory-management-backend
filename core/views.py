@@ -11,6 +11,9 @@ from .models import Factory, Product
 # Serializers
 from .serializers import FactorySerializer, ProductDetailSerializer, ProductSerializer
 
+# Utils
+from .utils import addNewProduct, updateProduct, deleteProduct
+
 # Create your views here.
 
 
@@ -36,4 +39,13 @@ class ProductViewSet(ModelViewSet):
 
     def create(self, request, factory_id, * args, **kwargs):
         request.data['factory'] = factory_id
+        print(addNewProduct(request))
         return super().create(request, *args, **kwargs)
+
+    def update(self, request, pk, *args, **kwargs):
+        print(updateProduct(request, pk))
+        return super().update(request, *args, **kwargs)
+
+    def destroy(self, request, pk, *args, **kwargs):
+        print(deleteProduct(pk))
+        return super().destroy(request, *args, **kwargs)
