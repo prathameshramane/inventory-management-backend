@@ -19,7 +19,7 @@ class ProductSerializer(ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id', 'factory', 'name', 'quantity',
+        fields = ('id', 'factory', 'name', 'quantity', 'price',
                   'description', 'imageUrl', 'image')
         extra_kwargs = {
             'image': {
@@ -43,7 +43,7 @@ class ProductDetailSerializer(ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id', 'name', 'quantity', 'description',
+        fields = ('id', 'name', 'quantity', 'description', 'price',
                   'imageUrl', 'image', 'factory')
         extra_kwargs = {
             'image': {

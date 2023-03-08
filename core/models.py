@@ -24,6 +24,7 @@ class Product(models.Model):
     quantity = models.IntegerField(validators=[MinValueValidator(0)])
     description = models.TextField()
     image = models.ImageField(upload_to=product_image_directory_path)
+    price = models.IntegerField(validators=[MinValueValidator(0)])
 
     # Relations
     factory = models.ForeignKey(to=Factory, on_delete=models.CASCADE)
