@@ -25,9 +25,6 @@ class ProductSerializer(ModelSerializer):
             'image': {
                 'write_only': True
             },
-            'factory': {
-                'write_only': True
-            },
             'imageUrl': {
                 'read_only': True
             }
