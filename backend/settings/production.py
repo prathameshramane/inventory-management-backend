@@ -3,11 +3,11 @@ from .base import *
 
 
 APP_URL = "https://prathamesh-inventory-management.azurewebsites.net"
-HOST_URL = "https://prathamesh-api.azurewebsites.net"
+HOST_URL = "https://prathamesh-inventory-backend.azurewebsites.net"
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['prathamesh-api.azurewebsites.net']
+ALLOWED_HOSTS = ['prathamesh-inventory-backend.azurewebsites.net']
 
 # Database
 
